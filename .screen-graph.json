@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    {
+      "id": "src/screens/Home/Home.tsx",
+      "label": "Home",
+      "routes": [
+        "/*"
+      ],
+      "dataModelId": "3:5",
+      "isRoot": true
+    }
+  ],
+  "edges": []
+}
