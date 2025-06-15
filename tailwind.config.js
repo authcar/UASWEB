@@ -62,6 +62,7 @@ module.exports = {
           '"Segoe UI Symbol"',
           '"Noto Color Emoji"',
         ],
+        lexend: ["'Lexend Deca'", "Helvetica", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

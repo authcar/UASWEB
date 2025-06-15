@@ -26,10 +26,11 @@ const AvatarImage = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
-    className={cn("aspect-square h-full w-full", className)}
+    className={cn("h-full w-full object-cover", className)} // Pakai object-cover
     {...props}
   />
 ));
+
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
 const AvatarFallback = React.forwardRef<

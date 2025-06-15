@@ -1,7 +1,7 @@
 // src/screens/Home/sections/SidebarCloseHoverSubsect/SidebarCloseHoverSubsect.tsx
-import { ChevronLeftIcon, ChevronRightIcon, HomeIcon } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, BookOpenText } from "lucide-react";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Avatar, AvatarImage } from "../../../../components/ui/avatar";
 import { Button } from "../../../../components/ui/button";
 import { Separator } from "../../../../components/ui/separator";
@@ -9,20 +9,14 @@ import { Separator } from "../../../../components/ui/separator";
 // Navigation menu items data
 const navigationItems = [
   {
-    icon: <HomeIcon className="w-[29.5px] h-[29.5px]" />,
-    link: "/home",
+    icon: <HomeIcon className="w-[29.5px] h-[29.5px] text-[#3e3f71]" />,
+    link: "/",
     label: "Dashboard",
     isActive: false,
   },
   {
-    icon: (
-      <img
-        className="w-[27px] h-[27px]"
-        alt="Frame"
-        src="https://c.animaapp.com/mbpscubqJ4b9Pt/img/frame.svg"
-      />
-    ),
-    link: "#",
+    icon:<BookOpenText className="w-[29.5px] h-[29.5px] text-[#3e3f71]" />,
+    link: "/view-all-classes",
     label: "Classes",
     isActive: false,
   },
@@ -34,7 +28,7 @@ const navigationItems = [
         src="https://c.animaapp.com/mbpscubqJ4b9Pt/img/date.png"
       />
     ),
-    link: "#",
+    link: "/substitute-class",
     label: "Substitute Class",
     isActive: false,
   },
@@ -46,23 +40,29 @@ const navigationItems = [
         src="https://c.animaapp.com/mbpscubqJ4b9Pt/img/user.png"
       />
     ),
-    link: "#",
-    label: "Profile & Documents",
-    isActive: true,
+    link: "/profile-documents",
+    label: "Profile",
+    isActive: false,
   },
 ];
 
 export const SidebarCloseHoverSubsect = (): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const handleAvatarClick = () => {
+    console.log("Avatar clicked!"); // untuk debug
+    navigate("/profile-documents");
+  };
+
   return (
     <aside
-      className={`relative bg-white rounded-[17.7px] border-r-[1.48px] border-[#0000001a] transition-all duration-300 ease-in-out ${
+      className={` font-lexend relative bg-white rounded-[17.7px] border-r-[1.48px] border-[#0000001a] transition-all duration-300 ease-in-out ${
         isExpanded ? "w-[280px]" : "w-[132px]"
       } h-full`}
       onMouseEnter={() => !isExpanded && setIsExpanded(true)}
@@ -88,7 +88,10 @@ export const SidebarCloseHoverSubsect = (): JSX.Element => {
       <div className="flex flex-col items-start pt-[91px] px-[35px] h-full">
         {/* User profile section */}
         <div className="flex items-center gap-4 mb-8">
-          <Avatar className="w-[65px] h-[65px] flex-shrink-0">
+          <Avatar
+            className="w-[65px] h-[65px] flex-shrink-0 cursor-pointer"
+            onClick={handleAvatarClick}
+          >
             <AvatarImage
               src="https://c.animaapp.com/mbpscubqJ4b9Pt/img/avatar.png"
               alt="User avatar"
@@ -112,7 +115,10 @@ export const SidebarCloseHoverSubsect = (): JSX.Element => {
 
         {/* Navigation */}
         <div className="flex flex-col gap-[11.8px] w-full">
-          <div className="font-medium text-[#757575] text-[14.8px] tracking-[0.59px] leading-[17.7px] whitespace-nowrap">
+          <div
+            className="font-medium text-[#757575] text-[14.8px] tracking-[0.59px] leading-[17.7px] whitespace-nowrap"
+            style={{ marginLeft: "10px" }}
+          >
             MAIN
           </div>
 
@@ -134,7 +140,7 @@ export const SidebarCloseHoverSubsect = (): JSX.Element => {
                   {item.icon}
                 </div>
                 {isExpanded && (
-                  <span className="font-medium text-[#1b1d21] text-base whitespace-nowrap overflow-hidden">
+                  <span className="font-medium text-[#1b1d21] text-lm whitespace-nowrap overflow-hidden">
                     {item.label}
                   </span>
                 )}
@@ -153,17 +159,6 @@ export const SidebarCloseHoverSubsect = (): JSX.Element => {
             </div>
           ))}
         </div>
-
-        {/* Pointing arrow for active item */}
-        {!isExpanded && (
-          <div className="absolute w-[35px] h-[35px] top-[507px] left-[71px]">
-            <img
-              className="absolute w-[25px] h-[26px] top-1.5 left-1.5"
-              alt="Pointing"
-              src="https://c.animaapp.com/mbpscubqJ4b9Pt/img/pointing.png"
-            />
-          </div>
-        )}
       </div>
     </aside>
   );

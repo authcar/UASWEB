@@ -13,13 +13,7 @@ const navigationItems = [
     isActive: false,
   },
   {
-    icon: (
-      <img
-        className="w-[27px] h-[27px]"
-        alt="Frame"
-        src="https://c.animaapp.com/mbpscubqJ4b9Pt/img/frame.svg"
-      />
-    ),
+    icon: <img className="w-[30px] h-[30px]" alt="Frame" src="" />,
     link: "#",
     isActive: false,
   },
@@ -49,7 +43,7 @@ const navigationItems = [
 
 export const ProfileSidebarSection = (): JSX.Element => {
   return (
-    <aside className="w-[132px] h-full bg-white rounded-[17.7px] border-r-[1.48px] border-[#0000001a] relative">
+    <aside className="w-[132px] h-full bg-white rounded-[17.7px] border-r-[1.48px] border-[#0000001a] relative ">
       {/* Collapse button */}
       <Button
         variant="outline"
